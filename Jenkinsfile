@@ -4,15 +4,19 @@ pipeline {
     stages {
         stage('build-docker-image') {
             steps{
-                build_docker_image()
+                obtain_code_poll_true()
+                build_and_push_docker_image()
             }
         }
     }
 }
 
 
-def build_docker_image() {
-    echo "Build api-tests.. "
+def obtain_code_poll_true() {
+    git branch: 'main', url: 'https://github.com/StepansSotskovsTestdevlabCom/course-js-api-framework.git'
+}
+
+def build_and_push_docker_image() {
     sh 'docker build --no-cache -t stepanssotskovs/api-tests:latest .'
     sh 'docker push stepanssotskovs/api-tests:latest'
 }
