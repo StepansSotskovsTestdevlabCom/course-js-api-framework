@@ -26,7 +26,7 @@ def build_and_push_docker_image() {
 
     echo "Pushing docker image to the docker registry"
     sh 'docker push stepanssotskovs/api-tests:latest'
-} 
+}  
 
 
 
