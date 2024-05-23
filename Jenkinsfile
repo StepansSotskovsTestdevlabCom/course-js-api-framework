@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    // triggers {
-    //     pollSCM('*/1 * * * *')
-    // }
+    triggers {
+        pollSCM('*/1 * * * *')
+    }
 
     stages {
         stage('build-docker-image') {
@@ -17,7 +17,7 @@ pipeline {
 
 def obtain_code_poll_true() {
     echo "Fetching repository.. "
-    git branch: 'main', url: 'https://github.com/StepansSotskovsTestdevlabCom/course-js-api-framework.git'
+    git branch: 'main', poll: false, url: 'https://github.com/StepansSotskovsTestdevlabCom/course-js-api-framework.git'
 }
 
 def build_and_push_docker_image() {
